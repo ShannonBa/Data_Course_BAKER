@@ -31,6 +31,7 @@ data("midwest", package = "ggplot2")
 # Let’s initialize a basic ggplot based on the midwest dataset that we loaded.
 ggplot(midwest) # what do you see?
 
+
 # give it some aesthetics to work with...
 ggplot(midwest, aes(x=area, y=poptotal))  # area and poptotal are columns in 'midwest'
 
@@ -118,13 +119,12 @@ p3 + theme_dark()
 
 
 # You can also transform your data right in ggplot:
-p4 = ggplot(midwest, aes(x=area/max(midwest$area), y=log10(poptotal))) + 
+p4 <- ggplot(midwest, aes(x=area/max(midwest$area), y=log10(poptotal))) + 
   geom_point(aes(color=state),size=3) + 
   geom_smooth(method="lm",color="firebrick") + 
   labs(title="Area Vs Population", subtitle="From midwest dataset", color = "State",
        y="log10 Population", x="Area (proportion of max)", caption="Midwest Demographics") +
-  theme_minimal() +
-  scale_color_manual(values=pal)
+  theme_minimal()
 
 p4
 
@@ -139,7 +139,7 @@ p4 + facet_wrap(~ state) + theme(legend.position = "none",
 
 
 # Some other "geom" types ... for categorical x axis
-p5 = ggplot(midwest, aes(x=state,y=percollege, fill=state)) + labs(x="State",y="Percent with college degree")
+p5 <- ggplot(midwest, aes(x=state,y=percollege, fill=state)) + labs(x="State",y="Percent with college degree")
 p5
 
 p5 + geom_boxplot()

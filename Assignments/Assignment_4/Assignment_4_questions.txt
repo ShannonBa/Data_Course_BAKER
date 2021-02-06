@@ -1,0 +1,27 @@
+Assignment 4
+
+1. What other stuff does read.csv() do automatically?
+read.csv brings files in an makes them usable in R by seperating values based on commas and making the first lines headers automatically. It uses a period in decimals. 
+
+2. How is it different from read.csv2()?
+read.csv2 aslo does those things, except values are not seperated by a comma but rather a semicolon. This is so then decimals can be made with a comma instead of a period.
+
+3. Why does read.csv2() even exist?
+In some European countries us a comma in their decimals instead of a period, so read.csv2() can be used with data collected by those contries not used a period.
+
+4. How could I change the parameters of read.csv() to make it so the class of the “State” column is “factor” instead of “character”?
+just say 
+as.character(df$State)
+or 
+state_factor <- as.factor(df$State)
+#as.factor(df$State) by itself does not work and df$State stays character
+
+5. What command would give the summary stats for ONLY the Home.Value column?
+summary(df$Home.Value)
+
+6. What value is returned by the command: names(df)[4] ?
+the fourth column of the df data.frame: "Home.Value"
+
+7. What is happening when you add (…col=df$region) to the above plotting code?
+In other words, what happens when you run: plot(x=df$Year,y=df$Land.Value,col=df$region)
+coloring based on region; this code didn't work, but it should be coloring by region; this plot is easier to create through ggplot
