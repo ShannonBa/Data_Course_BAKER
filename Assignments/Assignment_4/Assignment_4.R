@@ -37,16 +37,33 @@ summary.Date(ITS_mapping)
 dimnames(ITS_mapping)
 
 #boxplot
-as.character(ITS_mapping$Ecosystem)
-Eco <- as.factor(ITS_mapping$Ecosystem)
-class(Eco)
-Latf <- as.factor(ITS_mapping$Lat)
-class(Latf)
+#as.character(ITS_mapping$Ecosystem)
+#Eco <- as.factor(ITS_mapping$Ecosystem)
+#class(Eco)
+#Latf <- as.factor(ITS_mapping$Lat)
+#class(Latf)
+png(filename = "./silly_boxplot.png")
 plot(x=ITS_mapping$Ecosystem,y=ITS_mapping$Lat)
-plot(x=Eco,y=Latf)
-class(ITS_mapping$Ecosystem)
-as.numeric(ITS_mapping$Ecosystem)
-class(ITS_mapping$Lat)
-?boxplot()
-boxplot(x=ITS_mapping$Ecosystem, range = ITS_mapping$Lat)
-boxplot(ITS_mapping$Ecosystem~ITS_mapping$Lat)
+dev.off
+#plot(x=Eco,y=Latf)
+#class(ITS_mapping$Ecosystem)
+#as.numeric(ITS_mapping$Ecosystem)
+#class(ITS_mapping$Lat)
+#?boxplot()
+#boxplot(x=ITS_mapping$Ecosystem, range = ITS_mapping$Lat)
+#boxplot(ITS_mapping$Ecosystem~ITS_mapping$Lat)
+
+
+df <- read.delim(file="../../../Data/ITS_mapping.csv")
+plot(x=df$Ecosystem,y=df$Lat)
+class(df$Ecosystem)
+class(df$Lat)
+Eco <- as.factor(df$Ecosystem)
+La <- as.factor(df$Lat)
+
+
+png(filename = "./silly_boxplot.png")
+plot(x=Eco,y=df$Lat)
+dev.off()
+
+
