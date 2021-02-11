@@ -9,7 +9,6 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + geom_point()  +
   labs(title="Sepal length vs petal length", subtitle="for three iris species",
        y="Petal.Length", x="Sepal.Length" ) +
   theme_minimal()
-
 dev.off()
 
 #2
@@ -19,7 +18,6 @@ ggplot(iris, aes(x=Petal.Width, fill=Species))  +
   labs(title="Distribution of Petal Width", subtitle="for three iris species",
        y="density", x="Petal Width" ) +
   theme_minimal()
-
 dev.off()
 
 #3
@@ -30,7 +28,6 @@ ggplot(iris, aes(x=Species, y=new_y,fill=Species))  +
   labs(title="Sepal- to Petal-Width Ratio", subtitle="for three iris species",
        y="Ratio of Sepal Width to Petal Width", x="Species" ) +
   theme_minimal()
-
 dev.off()
 
 #4
@@ -38,14 +35,28 @@ mean <- mean(iris$Sepal.Length)
 deviance <- (iris$Sepal.Length-mean)
 class(deviance)
 
+#png(filename = "./iris_fig4.png")
+#ggplot(iris, aes( x=order((deviance)), fill=Species))  +
+#  geom_histogram(bins=99)+
+#  labs(title="Sepal length deviance from the mean of all observations",
+#       x="Deviance from the Mean", y=NULL, caption="Note: Deviance = Sepal.Length - mean(Sepal.Length)" ) +
+#  theme_minimal()+
+#  coord_flip()
+#dev.off()
+
+iris <- iris
+iris2 <- iris[order(iris$Sepal.Length-mean(iris$Sepal.Length)),]
+
+
 png(filename = "./iris_fig4.png")
-ggplot(iris, aes( x=sort((deviance)), fill=Species))  +
-  geom_histogram(bins=99)+
-  labs(title="Sepal length deviance from the mean of all observations",
-       x="Deviance from the Mean", y=NULL, caption="Note: Deviance = Sepal.Length - mean(Sepal.Length)" ) +
+ggplot(iris2, aes(x=1:150, y=Sepal.Length-mean(Sepal.Length), fill=Species))+
+  geom_bar(stat="identity") +
+  coord_flip()+
   theme_minimal()+
-  coord_flip()
+  labs(title="Sepal length deviance from the mean of all observations",
+       y="Deviance from the Mean", x="", y=NULL, caption="Note: Deviance = Sepal.Length - mean(Sepal.Length)" )
 dev.off()
-  
+
+
 
 
