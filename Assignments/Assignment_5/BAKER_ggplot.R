@@ -1,6 +1,6 @@
 ####################BAKER_ggplot.R      Assignment 5#######################
 iris<- iris
-
+library(tidyverse)
 #1
 png(filename = "./iris_fig1.png")
 ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + geom_point()  +
