@@ -1,0 +1,39 @@
+1. Are any of your predicted response values from your best model scientifically meaningless? Explain.
+According to the summary(mod16), Nigroten, HumidityLow:Nitrogen, and Light:HumidityLow:Nitrogen were not statistically significant. 
+Other models, such as my mod12, also did not show significantce with Nitrogen. On the Nitrogen vs GrowthRate graph,
+it did show that about 20 units of Nitrogen produced the highest GrowthRate, but perhaps the models did not see this
+as statistically significant to the overall growth rate. Perhaps the mushrooms are getting their nitrogen from a different
+source or too much nitrogen is not bad for mushrooms.
+
+
+2. In your plots, did you find any non-linear relationships? Do a bit of research online and give a link to 
+at least one resource explaining how to deal with modeling non-linear relationships in R.
+The Nitrogen relationship is non-linear. It is more bell-curved shaped. 
+Source: http://www.sthda.com/english/articles/40-regression-analysis/162-nonlinear-regression-essentials-in-r-polynomial-and-spline-regression-models/
+
+
+3. Write the code you would use to model the data found in “/Data/non_linear_relationship.csv” with a linear 
+model (there are a few ways of doing this)
+
+#model for linear model
+new <- read.csv("../../Data/non_linear_relationship.csv")
+
+#option 1
+ggplot (new, aes(y=response, x=predictor)) +
+  geom_point() +
+  geom_smooth(method="lm")
+
+#option 2
+ggplot (new, aes(y=response, x=predictor)) +
+  geom_point() +
+  geom_smooth()
+
+#option 3
+ggplot (new, aes(y=response, x=predictor)) +
+  geom_point() +
+  stat_smooth(method = lm, formula = y ~ splines::bs(x, df = 3))
+
+#option 4
+ggplot (new, aes(y=response, x=predictor)) +
+  geom_point() +
+  stat_smooth(method = lm, formula = y ~ poly(x, 5, raw = TRUE))
