@@ -125,32 +125,36 @@ hypo <- read.csv("./hypothetical_data.csv")
 predictions <- add_predictions(hypo, mod12)
 
 
-
 #plots these predictions alongside the real data ####
-
-ggplot(predictions,aes(y=(GrowthRate&pred),x=Humidity)) +
-  geom_boxplot(alpha=.25) +
-  geom_point()
-
-ggplot (mushroom, aes(y=GrowthRate, x=Light, color=Species)) +
-  geom_point(predictions, aes(y=pred, x=Light, color=Species)) +
-  geom_smooth(method="lm")+
-  facet_wrap(~Humidity)
 
 toge <- full_join(mushroom,predictions, by=c("Species",'Light','Temperature','Humidity','Nitrogen'))
 
-ggplot (toge, aes(y=GrowthRate, x=pred)) +
-  geom_point() +
-  geom_smooth(method="lm")
+
+#just the original mushroom data and the mod12 predictions
+#Did different graphs to compare the data more
+
+pred_mushroom <- add_predictions(mushroom, mod12)
 
 
-#just the original mushroom data
+ggplot (pred_mushroom, aes(x=Nitrogen)) +
+  geom_point(aes(y=pred),color="Red") +
+  geom_point(aes(y=GrowthRate),color="Black")+
+  facet_wrap(~Species)
+  
+ggplot (pred_mushroom, aes(x=Light)) +
+  geom_point(aes(y=pred),color="Red") +
+  geom_point(aes(y=GrowthRate),color="Black")+
+  facet_wrap(~Temperature)
 
-pred_original <- add_predictions(mushroom, mod12)
+ggplot (pred_mushroom, aes(x=Humidity)) +
+  geom_point(aes(y=pred),color="Red") +
+  geom_point(aes(y=GrowthRate),color="Black")+
+  facet_wrap(~Light)
 
-ggplot (toge, aes(y=GrowthRate)) +
-  geom_point(aes(x=pred)) +
-  geom_smooth(method="lm")
+ggplot (pred_mushroom, aes(x=Light)) +
+  geom_point(aes(y=pred),color="Red") +
+  geom_point(aes(y=GrowthRate),color="Black")+
+  facet_wrap(~Humidity)
 
 summary(mod16)
 summary(mod12)
