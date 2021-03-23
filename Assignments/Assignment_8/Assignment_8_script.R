@@ -1,4 +1,9 @@
 ############## Assignment 8  ########################
+#load packages
+library(modelr)
+library(broom)
+library(tidyverse)
+library(fitdistrplus)
 
 #### loads the “/Data/mushroom_growth.csv” data set #### 
 mushroom <- read.csv("../../Data/mushroom_growth.csv")
