@@ -45,20 +45,8 @@ ggsave("BAKER_Fig_1.jpg")
 
 aov.df <- aov(salary ~ tier + rank + state,  data = df)
 summary(aov.df)
-summary(aov.df)
-capture.output(summary(aov.df), 'output.txt') 
-#a <- #
-
-cat(text_lines[aov.df], file = "Salary_ANOVA_Summary.txt", sep = "\n") 
-dput(summary(aov(salary ~ tier + rank + state,  data = df),file="Salary_ANOVA_Summary.txt",control="all"))
-
-write.table(summary(aov.df), file = "Salary_ANOVA_Summary.txt", sep = "\t",
-            row.names = TRUE, col.names = NA)
-
-
-
-
-
+a <- summary(aov.df)
+capture.output(a, file= "Salary_ANOVA_Summary.txt") 
 
 
 
@@ -98,4 +86,4 @@ step$call #gives the model that was decidedly the best
 names(df2)
 
 summary(mod1)
-
+tidy(mod1) #close, but not quite 
