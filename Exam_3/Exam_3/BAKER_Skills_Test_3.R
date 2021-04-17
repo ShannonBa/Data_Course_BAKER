@@ -79,11 +79,9 @@ ggsave("BAKER_Fig_2.jpg")
 
 mod1 <- glm(data = df2, Concentration ~ YearsSinceBurn * ChemicalID)
 
-step <- stepAIC(mod1)
-mod1#widdles down your variables to the best model possible
-
-step$call #gives the model that was decidedly the best
-names(df2)
-
 summary(mod1)
-tidy(mod1) #close, but not quite 
+tidy(mod1) 
+tidy(mod1) %>%
+  filter(p.value <= 0.05) %>%
+  mutate(term = term %>% str_remove_all("ChemicalID"))
+

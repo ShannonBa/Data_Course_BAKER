@@ -4,5 +4,5 @@ rank           2 16521237 8260619 2271.92 <2e-16 ***
 state         50  4625868   92517   25.45 <2e-16 ***
 Residuals   3297 11987752    3636                   
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 128 observations deleted due to missingness
