@@ -104,8 +104,6 @@ Chemicals of significance (significant, as in P < 0.05) affected by "Years Since
 
 mod1 <- glm(data = df2, Concentration ~ YearsSinceBurn * ChemicalID)
 
-summary(mod1)
-tidy(mod1) 
 tidy(mod1) %>%
   filter(p.value <= 0.05) %>%
   mutate(term = term %>% str_remove_all("ChemicalID"))
