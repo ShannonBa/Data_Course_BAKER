@@ -60,7 +60,14 @@ three_change <- three %>%
 stopwords = c("U5MR.")
 three_change$year <- gsub(paste0(stopwords,collapse = "|"),"", three_change$year)
 
-
+#how to do it better:
+three_clean <- three %>%
+  pivot_longer(stars_with("U5MR"),
+               names_to="year",
+               values_to="MortalityRate",
+               names_prefix="U5MR.") #and just like that, the data is clean!!! 
+  mutate(years=as.numeric(year),
+         MortalityRate=as.numeric(MortalityRate))
 
 
 #### Task IV: ####     
@@ -115,7 +122,7 @@ ggsave("BAKER_Fig_3.jpg")
 #This is a scatterplot, faceted by region
 #Export it to your Exam_2 folder as LASTNAME_Fig_4.jpg (note, that's a jpg, not a png)
 ggplot(three_change, aes(x=year, y=(U5MR/1000)))+
-  geom_point(col="blue", size=.25) +
+  geom_point(col="blue", size=.25, shape=19) +
   geom_smooth(method="lm", size=.25) + 
   labs(x = "Year", y= "Mortality Rate", key= "Continent" ) +
  facet_wrap('Region') +

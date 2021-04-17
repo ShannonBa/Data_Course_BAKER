@@ -93,11 +93,11 @@ p1 <- ggplot (mtcars, aes(x=wt, y=mpg ))+
        x="weight")
 
 #Violin chart of the distributions of mpg for cars, separated and colored by the number of cylinders
-p2 <- ggplot(mtcars, aes( y=mpg, x=TRUE))+
+p2 <- ggplot(mtcars, aes( y=mpg, x=factor(cyl)))+
   geom_violin(aes(fill=factor(cyl)))+
   labs(title="The distributions of mpg for cars",
        y="miles-per-gallon",
-       x="car")
+       x="car cylinders")
 names(mtcars)
 
 #Scatterplot + trendline of the effect of horsepower on mpg 

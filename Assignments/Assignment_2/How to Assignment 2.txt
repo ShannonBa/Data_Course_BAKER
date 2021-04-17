@@ -1,0 +1,18 @@
+All from the position of folder Assignments 2:
+1.
+wc -l ../../Data/data-shell/data/pdb/m*.pdb
+
+2.
+wc -l ../../Data/data-shell/data/pdb/m*.pdb > m_lines.txt
+
+3. 
+cut -d "," -f 2 ../../Data/data-shell/data/animals.txt | sort | uniq > unique_animals.txt
+
+4.
+cut -d "," -f 5 ../../Data/BioLog_Plate_Data.csv | sort | uniq > unique_C-substrates.txt
+
+5.
+wc -l ../../Data/data-shell/data/*.txt | sort -n | tail -2 | head -1
+
+6. 
+find ../../Data/data-shell/many_files/ -type f -name "*.txt" -exec bash ../../Data/data-shell/scripts/sum_lines.sh {} \;

@@ -85,3 +85,8 @@ tidy(mod1) %>%
   filter(p.value <= 0.05) %>%
   mutate(term = term %>% str_remove_all("ChemicalID"))
 
+
+#### Task VII. ####
+
+# added a knitted html file called 'index.Rmd' of Exam 3: https://shannonba.github.io/Exam_3/
+

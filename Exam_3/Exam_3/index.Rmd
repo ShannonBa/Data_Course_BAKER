@@ -16,7 +16,7 @@ library(plotly)
 ```
 
 
-The first code being used looks at data for college faculty salaries and total compensation from 1995, by Ranks, Tier, and State from 1995. The ranks are Assistant, Associate, and Full. The tier involved the funding devoted to research vs the amount of funding for teaching; tier I spend mor on research than teaching and award PhD degrees. 
+The first code being used looks at data for college faculty salaries and total compensation from 1995, by Ranks, Tier, and State from 1995. The ranks are Assistant, Associate, and Full. The tier invovled the funding devoted to research vs the amount of funding for teaching; tier I spend mor on research than teaching and award PhD degrees. 
 
 ### Task I: Load and clean FacultySalaries_1995.csv file
 
@@ -41,13 +41,17 @@ x <- ggplot(df, aes(x= rank, y = salary, fill =rank)) +
   geom_boxplot( size = 1, outlier.size=3) +
   facet_wrap(~tier)+
   theme_minimal()+
-  theme(axis.text.x = element_text(angle = 45)) +
+  theme(axis.text.x = element_text(angle = 45),
+        axis.title.x = element_text(margin = unit(c(3, 0, 0, 0), "mm")),
+        axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm"))) +
   labs(y="Salary",x="Rank", fill = "Rank" )+
   scale_fill_discrete(name = "Rank", labels = c("Assist", "Assoc", "Full"))+
   scale_x_discrete(labels=c("avg_full_prof_salary" = "Full", 
                             "avg_assoc_prof_salary" = "Assoc",
                             "avg_assist_prof_salary" = "Assist"))
-ggplotly(x)
+
+fig <- ggplotly(x)
+fig
 ```
 
 
@@ -97,13 +101,19 @@ ggplotly(p)
 Chemicals of significance (significant, as in P < 0.05) affected by "Years Since Burn."
 
 ```{r}
+
 mod1 <- glm(data = df2, Concentration ~ YearsSinceBurn * ChemicalID)
-#also still working on
+
+summary(mod1)
+tidy(mod1) 
+tidy(mod1) %>%
+  filter(p.value <= 0.05) %>%
+  mutate(term = term %>% str_remove_all("ChemicalID"))
 ```
 
 ### Task V: Commit and push all code and files to GitHub
 
-Terminal -> git add Exam 3
-            git commit -m "Exam 3"
-            git push
+Terminal -> git add Exam 3  
+            git commit -m "Exam 3"  
+            git push  
 My folder for Exam 3 is not on GitHub.
