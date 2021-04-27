@@ -109,7 +109,7 @@ tidy(mod1) %>%
   mutate(term = term %>% str_remove_all("ChemicalID"))
 ```
 
-### Task V: Commit and push all code and files to GitHub
+### Task VI: Commit and push all code and files to GitHub
 
 Terminal -> git add Exam 3  
             git commit -m "Exam 3"  
